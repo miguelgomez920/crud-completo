@@ -1,0 +1,52 @@
+# --------------------
+# FRONTEND
+# --------------------
+
+# dependencias
+/client/node_modules
+/client/.pnp
+/client/pnp.js
+
+# pruebas
+/client/coverage
+
+# producción
+/client/build
+
+# otros
+/client/.DS_Store
+
+# variables de entorno del cliente
+/client/.env.local
+/client/.env.development.local
+/client/.env.test.local
+/client/.env.production.local
+
+# logs cliente
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
+
+# --------------------
+# BACKEND
+# --------------------
+
+# dependencias
+/server/node_modules
+
+# variables de entorno del backend
+/server/.env
+
+# logs backend
+/server/npm-debug.log*
+/server/yarn-debug.log*
+/server/yarn-error.log*
+
+# --------------------
+# GENERAL / GLOBAL
+# --------------------
+
+# sistema
+.DS_Store
+.env
+.env.local
