@@ -1,0 +1,64 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+thead {
+  background-color: #007bff;
+  color: white;
+}
+
+.delinear td {
+    background-color: #e5fbe5; 
+}
+
+th, td {
+  padding: 4px;
+  border: 1px solid #dee2e6;
+  word-wrap: break-word;
+  white-space: normal;
+  max-width: 200px; /* ajusta según tu diseño */
+  height: 60px;
+}
+
+
+.descripcion {
+  word-wrap: break-word;
+  white-space: normal;
+  max-width: 250px; /* ajusta según tu diseño */
+}
+
+.acciones {
+  max-width: 250px;
+}
+
+.acciones button {
+  display: inline-block;
+  width: 5rem;
+  height: 2rem;
+  padding: 0;
+  font-size: 15px;
+  margin: 0;
+}
+
+
+.acciones .editar {
+  background-color: #3c86d5;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 15px 0 0 ;
+}
+
+.acciones .eliminar {
+  background-color:#d01a1a;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 0 0 15px ;
+}
+
+
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

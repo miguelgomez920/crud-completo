@@ -1,0 +1,17 @@
+label{
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: #333;
+  /* align-items: center; */
+  width: 100%;
+  margin-left: 2rem;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 6px;
+  width: 90%;
+}

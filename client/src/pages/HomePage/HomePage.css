@@ -1,0 +1,44 @@
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f7fa;
+        box-sizing: border-box;
+    }
+    
+    .container__homepage {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        
+    }
+    
+    .card__homepage {
+        background-color:rgba(77, 176, 207, 0.2);
+        border-radius: 15px;
+        box-shadow: 1px -3px 32px -5px rgba(28,24,24,0.8);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 30rem;
+        height: 20rem;
+    }
+
+    .card__homepage h1 {
+        color: aliceblue;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .card__homepage button {
+        color: black;
+        background-color: rgba(74, 148, 228, 0.455);
+        transition: transform 0.3s ease;
+    }
+
+    .card__homepage button:hover {
+        color: white;
+        background-color: rgb(87, 113, 173);
+        transform: scale(1.1);
+    }

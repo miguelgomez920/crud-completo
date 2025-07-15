@@ -1,0 +1,36 @@
+button {
+  padding: 12px 24px;
+  margin: 1rem 0;
+  font-size: 16px;
+  font-weight: bolder;
+  background-color: #28a745;
+  color: rgb(8, 2, 2);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
+
+.formulario .botonesEditar {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.formulario .botonesEditar button{
+  width: 15rem;
+}
+
+.formulario .botonesEditar .actualizar{
+  background-color: #f0f646;
+}
+
+.formulario .botonesEditar .cancelar{
+  background-color: #d01a1a;
+}
+
+.formulario button:hover {
+  background-color: #218838;
+}
