@@ -1,8 +1,10 @@
-//importaciones
+// ======================= IMPORTACIONES =======================
 import './ProductosPage.css';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Swal from "sweetalert2"; // Para mostrar alertas estilizadas
+
+// Servicios para manejar operaciones HTTP con productos
 import {
   getAllProductos,
   createProducto,
@@ -10,14 +12,15 @@ import {
   deleteProductoById
 } from '../../services/ProductosService.js';
 
+// Componentes reutilizables
 import TablaProductos from '../../components/TablaProductos/TablaProductos.js';
 import InputFormulario from '../../components/InputFormulario/InputFormulario.js';
 import BotonFormulario from '../../components/BotonFormulario/BotonFormulario.js';
 
-
+// ======================= COMPONENTE PRINCIPAL =======================
 function ProductosPage(){
 
-//Estados
+ // --------------------- ESTADOS ---------------------
 const [nombre, setNombre] = useState("");
 const [precio, setPrecio] = useState("");
 const [categoria, setCategoria] = useState("");
@@ -25,15 +28,27 @@ const [cantidad, setCantidad] = useState("");
 const [descripcion, setDescripcion] = useState("");
 const [id, setId] = useState("");
 
-//array productos
+// Lista o array de productos
 const [productosArray, setProductos ] = useState([]);
 
-//array headers de la tabla
+//array headers  para los encabezados para la tabla de productos
 const headers = ["ID", "Nombre", "Precio", "Categoría", "Cantidad", "Descripción", "Acciones"];
 
-//boton editar
+// Control del botón de editar
 const [botonEditar, setBotonEditar] = useState(false);
 
+//Estado de carga (loading)
+const [loading, setLoading] = useState(false);
+
+// Hook que carga los productos cuando se ejecuta el componente funcional App.js, solo carga a los productos una vez, para que no lo haga cada que se renderize el componente al cambiar un estado o poner otro prop
+useEffect(()=>{
+    getProductos();
+}, []);
+
+
+ // ======================= FUNCIONES =======================
+
+ //Carga los datos de un producto seleccionado en los inputs
 const editarProducto = (elemento)=>{
   setBotonEditar(true);
   setNombre(elemento.nombre);
@@ -45,19 +60,8 @@ const editarProducto = (elemento)=>{
   console.log(elemento);
 }
 
-//loading
-const [loading, setLoading] = useState(false);
 
-// Hook que carga los productos cuando se ejecuta el componente funcional App.js, solo carga a los productos una vez, para que no lo haga cada que se renderize el componente al cambiar un estado o poner otro prop
-useEffect(()=>{
-    getProductos();
-}, []);
-
-
-
-//Peticiones HTTP
-
-//validar Campos (función reutilizable )
+//Valida que los campos del formulario sean correctos (función reutilizable )
 const validarCampos = ()=>{
   return( //Queremos que el resultado de esa expresión (true o false) sea el valor devuelto por la función.
     nombre.trim() &&
@@ -68,8 +72,35 @@ const validarCampos = ()=>{
   );
 };
 
+//limpia los campos del formulario
+const limpiarCampos = ()=>{
+  setNombre("");
+  setPrecio("");
+  setCategoria("");
+  setCantidad("");
+  setDescripcion("");
+  setId("");
+  setBotonEditar(false);
+}
 
-//post
+//Obtiene todos los producto desde el backend (get)
+const getProductos = () => {
+    getAllProductos()
+      .then((response) => {
+        setProductos(response.data);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "No se logró mostrar los productos",
+          footer: error.message
+        });
+      });
+  };
+
+
+//Crea un nuevo producto enviando los datos al backend (post)
 const postProductos = ()=>{
   if(!validarCampos()){
     alert("Por favor ingrese todos los campos correctamente");
@@ -109,36 +140,7 @@ const postProductos = ()=>{
 };
 
 
-//limpiar campos
-const limpiarCampos = ()=>{
-  setNombre("");
-  setPrecio("");
-  setCategoria("");
-  setCantidad("");
-  setDescripcion("");
-  setId("");
-  setBotonEditar(false);
-}
-
-
-//get
-const getProductos = () => {
-    getAllProductos()
-      .then((response) => {
-        setProductos(response.data);
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "No se logró mostrar los productos",
-          footer: error.message
-        });
-      });
-  };
-
-
-//put
+//Actualiza un producto existente en el backend (put)
 const putProductos = async()=>{
   if(!validarCampos()){
       alert("Por favor ingrese todos los campos correctamente");
@@ -175,7 +177,7 @@ const putProductos = async()=>{
   }
 }
 
-//delete
+//Elimina un producto por su ID (delete)
 const deleteProducto = (elemento)=>{
       setId("");
       Swal.fire({
@@ -211,7 +213,7 @@ const deleteProducto = (elemento)=>{
 }
 
 
-  // ============================================== JSX ===================================================== 
+  // ======================= RENDER (JSX) ======================= 
     return (
 
       <div className='container__productos'>
