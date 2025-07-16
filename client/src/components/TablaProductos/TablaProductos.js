@@ -14,7 +14,7 @@ const TablaProductos = ({headers, productosArray, editarProducto, idEditando, de
                       ))
                       }    
                
-                </tr>
+                </tr> 
               </thead>
               <tbody>
                 {productosArray.map((elemento, index) => {
