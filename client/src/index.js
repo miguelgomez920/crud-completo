@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter> {/*ponemos que el browserRouter envuelva toda la App para que en toda esta podemos usar las funciones del reac-router-dom */}
     <App />
     </BrowserRouter>
   </React.StrictMode>

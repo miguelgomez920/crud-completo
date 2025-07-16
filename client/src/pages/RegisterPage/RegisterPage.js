@@ -1,15 +1,22 @@
+// ======================= IMPORTACIONES =======================
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// ======================= COMPONENTE =======================
 function RegisterPage() {
+  // --------------------- ESTADOS ---------------------
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
+  const navigate = useNavigate(); // Para redireccionar después del registro
+
+  // --------------------- FUNCIONES ---------------------
+
+  // Maneja el envío del formulario de registro
   const handleRegister = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); //de esta forma evitamos que se cargue la pagina cuando enviamos el submit
     try {
       await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, {
         nombre,
@@ -18,13 +25,14 @@ function RegisterPage() {
       });
 
       alert("✅ Usuario registrado con éxito");
-      navigate("/login");
+      navigate("/login"); // Redirecciona al login
     } catch (err) {
       alert("❌ Error al registrar el usuario");
       console.error(err);
     }
   };
 
+   // ======================= RENDER (JSX) =======================
   return (
     <form onSubmit={handleRegister}>
       <h2>Registro</h2>
@@ -54,4 +62,5 @@ function RegisterPage() {
   );
 }
 
+// ======================= EXPORTACIÓN =======================
 export default RegisterPage;

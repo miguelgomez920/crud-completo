@@ -1,29 +1,31 @@
+// ======================= IMPORTACIONES =======================
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Link} from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom"; // Para navegación entre rutas
 
+// ======================= COMPONENTE =======================
 function LoginPage() {
-  //estados
+   // --------------------- ESTADOS ---------------------
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook para redireccionar a otra página
 
-  //peticiones http
+  // --------------------- FUNCIONES ---------------------
+  // Maneja el envío del formulario de login
   const handleLogin = async (e) => {
     e.preventDefault(); //evita que el navegador recargue la página que seria el comportamiento por defecto cuando se envia un formulario submit (submit = entregar)
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
       localStorage.setItem("token", response.data.token); //Guarda el token JWT recibido desde el backend en el almacenamiento local del navegador.
-      localStorage.setItem("user", JSON.stringify(response.data.usuario)); //se usa JSON.stringify porque solo se pueden guardar strings en localStorage.
+      localStorage.setItem("user", JSON.stringify(response.data.usuario)); //se usa JSON.stringify para pasarlo a string porque solo se pueden guardar strings en localStorage.
       navigate("/homepage"); //Redirige al usuario a la ruta /homepage después de iniciar sesión exitosamente.
     } catch (err) {
       alert("Credenciales incorrectas");
     }
   };
 
-  //JSX
+  // ======================= RENDER (JSX) =======================
   return (
     <form onSubmit={handleLogin}>
       <h2>Iniciar sesión</h2>
@@ -50,8 +52,10 @@ function LoginPage() {
         ¿No tienes una cuenta?{" "}
         <Link to="/register">Regístrate aquí</Link> {/* 👈 Enlace con Link */}
       </p>
+
     </form>
   );
 }
 
+// ======================= EXPORTACIÓN =======================
 export default LoginPage;

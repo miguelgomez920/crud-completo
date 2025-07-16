@@ -9,7 +9,7 @@ const InputFormulario = ({id, label, type, value, onChange, placeholder})=>{ //c
         <label htmlFor={id}>{label}<input type = {type}  //es buena practica asociar el label con el input con el htmlFor y el id del input
           id = {id}
           value={value}
-          onChange={(event)=>{onChange(event.target.value)}}              //no hace falta poner el setNombre dentro de llaves ya que ya lo esta 
+          onChange={(event)=>{onChange(event.target.value)}}  //no hace falta poner el setNombre dentro de llaves ya que ya lo esta 
           placeholder={placeholder}></input></label>
         </>
     )

@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization; //adquiere el token del header
   if (!authHeader) return res.status(401).send("No hay token");
 
   const token = authHeader.split(" ")[1];
