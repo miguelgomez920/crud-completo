@@ -7,4 +7,4 @@ const RutaPrivada = ({ children }) => { //recibe children como prop, es decir, l
   return token ? children : <Navigate to="/login" />; //Si hay un token (es decir, el usuario está autenticado), muestra lo que esté dentro de children (normalmente una página privada). y Si no hay token, redirige a la ruta /login usando Navigate.
 };
 
-export default RutaPrivada;
+export default RutaPrivada; 
